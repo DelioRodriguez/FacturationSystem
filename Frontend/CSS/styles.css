@@ -1,0 +1,186 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos globales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+header {
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.form-section, .table-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+button.edit, button.delete {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+button.delete {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+button.edit:hover {
+    background-color: #f0f0f0;
+}
+
+button.delete:hover {
+    background-color: #333;
+}
+
+/* Estilos para el overlay y spinner */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden; /* Oculto por defecto */
+}
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
+}
+/* Estilos personalizados para botones con fondo transparente y borde en blanco y negro */
+
+/* Botón de alerta (anteriormente btn-outline-danger) */
+.btn-outline-danger {
+    color: #000000; /* Color del texto */
+    border-color: transparent; /* Color del borde */
+    background-color: transparent; /* Fondo transparente */
+}
+
+/* Botón de advertencia (anteriormente btn-outline-warning) */
+.btn-outline-warning {
+    color: #000000; /* Color del texto */
+    border-color: transparent; /* Color del borde */
+    background-color: transparent; /* Fondo transparente */
+}
+
+/* Cambios en el estado hover */
+.btn-outline-danger:hover, .btn-outline-warning:hover {
+    color: #ffffff; /* Color del texto al pasar el ratón */
+    background-color: #000000; /* Fondo negro al pasar el ratón */
+    border-color: #000000; /* Color del borde al pasar el ratón */
+}
+
+/* Estilos de enfoque */
+.btn-outline-danger:focus, .btn-outline-warning:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5); /* Color del borde de enfoque negro */
+    outline: none; /* Elimina el borde predeterminado */
+    background-color: transparent; /* Mantén el fondo transparente al estar en foco */
+}
+
+/* Estilos para el estado activo (cuando se hace clic) */
+.btn-outline-danger:active, .btn-outline-warning:active {
+    background-color: transparent; /* Fondo negro al hacer clic */
+    color: #ffffff; /* Color del texto al hacer clic */
+    border-color: #000000; /* Color del borde al hacer clic */
+}
+
+/* Estilo para alinear los botones horizontalmente */
+.button-group {
+    display: flex;
+    gap: 0.5rem; /* Espacio entre los botones */
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Factura</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <h1>Crear Factura</h1>
+        <nav>
+            <a href="login.html?logout=true" class="text-white mx-2">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <main class="container my-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Seleccionar Productos</h3>
+                <ul id="productosList" class="list-group">
+                    <!-- Los productos se cargarán aquí -->
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3>Factura</h3>
+                <form id="facturaForm" class="form-group bg-white p-4 rounded shadow-sm">
+                    <div class="form-group">
+                        <label for="cliente">Cliente:</label>
+                        <input type="text" class="form-control" id="cliente" name="cliente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productosSeleccionados">Productos Seleccionados:</label>
+                        <ul id="productosSeleccionados" class="list-group mb-3"></ul>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generar Factura</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="factura.js"></script>
+</body>
+</html>
