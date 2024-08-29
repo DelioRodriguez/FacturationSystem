@@ -11,5 +11,6 @@ namespace Facturacion.API.Data.Context
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Products> Products { get; set; }
     }
 }
