@@ -44,7 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        // Solo incluimos el id si estamos actualizando un producto
         const productoData = {
+            id: productoId || 0,
             name: name,
             price: price,
             amount: amount
@@ -67,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.text(); // Usa text() en lugar de json() si la respuesta puede estar vacía
         })
         .then(() => {
-            productoForm.reset();
+            productoForm.reset(); // Limpia el formulario después de enviar
+            document.getElementById('productoId').value = ''; // Limpia el ID
             loadProductos(); // Asegúrate de que se llama después de la actualización
         })
         .catch(error => {
@@ -85,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('precio').value = producto.price !== undefined && producto.price !== null ? producto.price : '';
                 document.getElementById('cantidad').value = producto.amount !== undefined && producto.amount !== null ? producto.amount : '';
             })
-            .catch(error => console.error('Error al cargar el producto:', error));
+            .catch(error => console.error('Error al cargar el producto para editar:', error));
     };
 
     // Función para mostrar el modal de confirmación de eliminación

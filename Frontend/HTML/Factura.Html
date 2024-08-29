@@ -11,6 +11,7 @@
     <header class="bg-dark text-white text-center py-3">
         <h1>Crear Factura</h1>
         <nav>
+            <a href="Clientes.html" class="text-white mx-2">Clientes</a>
             <a href="login.html?logout=true" class="text-white mx-2">Cerrar Sesión</a>
         </nav>
     </header>
@@ -34,6 +35,10 @@
                         <label for="productosSeleccionados">Productos Seleccionados:</label>
                         <ul id="productosSeleccionados" class="list-group mb-3"></ul>
                     </div>
+                    <div class="form-group">
+                        <label for="total">Total:</label>
+                        <p id="total"></p>
+                    </div>
                     <button type="submit" class="btn btn-primary">Generar Factura</button>
                 </form>
             </div>
@@ -43,6 +48,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="factura.js"></script>
+    <script src="/Frontend/JS/factura.js"></script>
 </body>
 </html>
