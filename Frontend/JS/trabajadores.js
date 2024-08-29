@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const trabajadorForm = document.getElementById('trabajadorForm');
     const trabajadoresTable = document.getElementById('trabajadoresTable');
+    let deleteUserId = null;
 
     // Función para cargar trabajadores
     function loadTrabajadores() {
@@ -14,12 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${user.username}</td>
                         <td>${user.role}</td>
                         <td>
-                            <button class="btn btn-outline-warning btn-sm" onclick="editUser(${user.id})">
-                                <i class="fas fa-pencil-alt"></i>
-                            </button>
-                            <button class="btn btn-outline-danger btn-sm" onclick="deleteUser(${user.id})">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
+                            <div class="btn-group">
+                                <button class="btn btn-outline-warning btn-sm" onclick="editUser(${user.id})">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="openDeleteModal(${user.id})">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
                         </td>
                     `;
                     trabajadoresTable.appendChild(row);
@@ -93,10 +96,19 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error al cargar el usuario:', error));
     };
 
-    // Función para eliminar un usuario
-    window.deleteUser = function(id) {
-        if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
-            fetch(`http://localhost:5013/api/Users/${id}`, {
+    // Función para abrir el modal de eliminación
+    window.openDeleteModal = function(id) {
+        deleteUserId = id;
+        $('#confirmDeleteModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    };
+
+    // Función para confirmar la eliminación del usuario
+    document.getElementById('confirmDeleteButton').addEventListener('click', function() {
+        if (deleteUserId) {
+            fetch(`http://localhost:5013/api/Users/${deleteUserId}`, {
                 method: 'DELETE'
             })
             .then(response => {
@@ -104,10 +116,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     return response.text().then(text => { throw new Error(text); });
                 }
                 loadTrabajadores(); // Recargar la tabla después de eliminar un usuario
+                $('#confirmDeleteModal').modal('hide'); // Cerrar el modal
             })
             .catch(error => console.error('Error al eliminar el usuario:', error));
         }
-    };
+    });
 
     loadTrabajadores(); // Cargar los usuarios al inicio
 });

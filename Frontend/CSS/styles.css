@@ -184,3 +184,13 @@ button.delete:hover {
     display: flex;
     gap: 0.5rem; /* Espacio entre los botones */
 }
+/* Asegúrate de que los botones estén en línea y tengan un espaciado adecuado */
+.btn-group {
+    display: flex;
+    gap: 0.5rem; /* Espaciado entre los botones */
+}
+
+.btn-group .btn {
+    margin: 0; /* Asegúrate de que no haya márgenes adicionales */
+}
+
