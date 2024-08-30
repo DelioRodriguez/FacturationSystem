@@ -1,46 +1,86 @@
-document.getElementById('loginForm').addEventListener('submit', function (event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    // Toggle password visibility
+    const togglePasswordButton = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    togglePasswordButton.addEventListener('click', function () {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
 
-    const loginData = {
-        username: username,
-        password: password
-    };
-
-    fetch('http://localhost:5013/api/Auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la autenticación');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Datos recibidos:', data); // Para depuración
-
-        if (data && data.role) {
-            const userRole = data.role;
-
-            if (userRole === 'admin') {
-                window.location.href = 'Productos.html';
-            } else if (userRole === 'empleado') {
-                window.location.href = 'Factura.html';
-            } else {
-                alert('Rol no reconocido');
-            }
-        } else {
-            alert('Datos de usuario no válidos.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error al iniciar sesión. Por favor, revisa tus credenciales.');
+        // Toggle icon
+        const icon = togglePasswordButton.querySelector('i');
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
     });
+
+    // Form submission handler
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const loginData = {
+            username: username,
+            password: password
+        };
+
+        // Limpiar cualquier mensaje de error previo
+        clearErrorMessage();
+
+        fetch('http://localhost:5013/api/Auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la autenticación');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Datos recibidos:', data); // Para depuración
+
+            if (data && data.role) {
+                const userRole = data.role;
+
+                if (userRole === 'admin') {
+                    window.location.href = 'Productos.html';
+                } else if (userRole === 'empleado') {
+                    window.location.href = 'Factura.html';
+                } else {
+                    showError('Rol no reconocido');
+                }
+            } else {
+                showError('Datos de usuario no válidos.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showError('Por favor, revisa tus credenciales.');
+        });
+    });
+
+    function showError(message) {
+        const form = document.getElementById('loginForm');
+        const errorElement = document.createElement('div');
+        errorElement.id = 'error-message';
+        errorElement.className = 'text-danger mt-2';
+        errorElement.textContent = message;
+        form.appendChild(errorElement);
+    }
+
+    function clearErrorMessage() {
+        const errorMessage = document.getElementById('error-message');
+        if (errorMessage) {
+            errorMessage.remove();
+        }
+    }
+
+    // Remove error message when focusing on any input
+    document.getElementById('username').addEventListener('focus', clearErrorMessage);
+    document.getElementById('password').addEventListener('focus', clearErrorMessage);
 });

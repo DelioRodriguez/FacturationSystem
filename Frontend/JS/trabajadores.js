@@ -40,17 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('password').value;
         const trabajadorId = document.getElementById('trabajadorId').value;
 
-        // Obtén la contraseña actual desde un campo oculto si está disponible
+       
         const currentPasswordHash = document.getElementById('currentPasswordHash').value;
 
         const userData = {
-            id: trabajadorId,
+            id: trabajadorId || 0,
             username: usuario,
             role: role,
-            passwordHash: password || currentPasswordHash // Usa la contraseña nueva si está disponible, de lo contrario usa la contraseña actual
+            passwordHash: password || currentPasswordHash 
         };
 
-        console.log('Datos enviados:', JSON.stringify(userData)); // Depuración
+        console.log('Datos enviados:', JSON.stringify(userData)); 
 
         const url = trabajadorId ? `http://localhost:5013/api/Users/${trabajadorId}` : 'http://localhost:5013/api/Users';
         const method = trabajadorId ? 'PUT' : 'POST';
@@ -66,11 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!response.ok) {
                 return response.text().then(text => { throw new Error(text); });
             }
-            return response.text(); // Usa text() en lugar de json() si la respuesta puede estar vacía
+            return response.text(); 
         })
         .then(() => {
             trabajadorForm.reset();
-            loadTrabajadores(); // Asegúrate de que se llama después de la actualización
+            loadTrabajadores(); 
         })
         .catch(error => {
             console.error('Error al enviar la solicitud:', error);
@@ -85,9 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('trabajadorId').value = user.id;
                 document.getElementById('usuario').value = user.username;
                 document.getElementById('role').value = user.role;
-                document.getElementById('password').value = ''; // No mostrar la contraseña actual por razones de seguridad
+                document.getElementById('password').value = ''; 
                 
-                // Almacena la contraseña actual en un campo oculto
                 const currentPasswordHashInput = document.getElementById('currentPasswordHash');
                 if (currentPasswordHashInput) {
                     currentPasswordHashInput.value = user.passwordHash;
@@ -96,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error al cargar el usuario:', error));
     };
 
-    // Función para abrir el modal de eliminación
+    
     window.openDeleteModal = function(id) {
         deleteUserId = id;
         $('#confirmDeleteModal').modal({
@@ -105,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
-    // Función para confirmar la eliminación del usuario
+
     document.getElementById('confirmDeleteButton').addEventListener('click', function() {
         if (deleteUserId) {
             fetch(`http://localhost:5013/api/Users/${deleteUserId}`, {
@@ -115,12 +114,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!response.ok) {
                     return response.text().then(text => { throw new Error(text); });
                 }
-                loadTrabajadores(); // Recargar la tabla después de eliminar un usuario
-                $('#confirmDeleteModal').modal('hide'); // Cerrar el modal
+                loadTrabajadores();
+                $('#confirmDeleteModal').modal('hide'); 
             })
             .catch(error => console.error('Error al eliminar el usuario:', error));
         }
     });
 
-    loadTrabajadores(); // Cargar los usuarios al inicio
+    loadTrabajadores(); 
 });

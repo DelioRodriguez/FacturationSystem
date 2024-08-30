@@ -8,18 +8,27 @@
 /* Estilos globales */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f7f6;
+    background: linear-gradient(135deg, #f8f9fa, #e0e7ff);
     color: #333;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Centra el formulario en la página */
+    align-items: center;
 }
 
+/* Header estilizado */
 header {
-    background-color: #343a40;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: #fff;
-    padding: 10px 20px;
+    padding: 15px 20px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 header h1 {
+    font-size: 2rem;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
@@ -38,31 +47,43 @@ main {
     padding: 20px;
     max-width: 1200px;
     margin: auto;
+    flex-grow: 1;
 }
 
+/* Secciones con sombra y bordes redondeados */
 .form-section, .table-section {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    width: 100%;
+    max-width: 400px; /* Define un ancho máximo para el formulario */
 }
 
+/* Ajustes para el formulario de inicio de sesión */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Reduce el margen para evitar el movimiento del botón */
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
+    font-size: 1rem;
+    color: #555;
 }
 
 input, button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 50px;
+    font-size: 1rem;
+}
+
+input {
+    margin-bottom: 10px; /* Añadido para separar los campos */
 }
 
 button {
@@ -70,57 +91,66 @@ button {
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
+    transition: none; /* Elimina la transición */
+    margin-top: 10px; /* Añadido para evitar que el botón suba */
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+/* Estilos personalizados para el mensaje de error */
+#error-message {
+    font-size: 0.9rem;
+    color: #e74c3c;
+    margin-top: 10px; /* Añadido para espaciar el mensaje del botón */
+    word-wrap: break-word; /* Asegura que el mensaje se ajuste al área disponible */
+    text-align: center; /* Centra el mensaje de error */
+    line-height: 1.5; /* Ajusta el espaciado dentro del mensaje de error */
 }
 
-table, th, td {
-    border: 1px solid #ddd;
+/* Estilos de tarjeta modernizados */
+.card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
 }
 
-th, td {
-    padding: 12px;
-    text-align: left;
+.form-control {
+    border-radius: 50px;
+    padding: 15px;
+    font-size: 1rem;
 }
 
-th {
-    background-color: #007bff;
-    color: #fff;
-}
-
+/* Botones de edición y eliminación más llamativos */
 button.edit, button.delete {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #000;
-    padding: 5px 10px;
+    background-color: #ffffff;
+    color: #007bff;
+    border: 2px solid #007bff;
+    padding: 8px 15px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 50px;
     margin-right: 5px;
-    display: inline-block;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button.delete {
-    background-color: #000;
-    color: #fff;
-    border: 1px solid #fff;
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
 }
 
 button.edit:hover {
-    background-color: #f0f0f0;
+    background-color: #007bff;
+    color: #ffffff;
 }
 
 button.delete:hover {
-    background-color: #333;
+    background-color: #c0392b;
 }
 
 /* Estilos para el overlay y spinner */
@@ -137,60 +167,63 @@ button.delete:hover {
     z-index: 1000;
     visibility: hidden; /* Oculto por defecto */
 }
+
 .spinner-border {
-    width: 3rem;
-    height: 3rem;
-    border-width: 0.3em;
-}
-/* Estilos personalizados para botones con fondo transparente y borde en blanco y negro */
-
-/* Botón de alerta (anteriormente btn-outline-danger) */
-.btn-outline-danger {
-    color: #000000; /* Color del texto */
-    border-color: transparent; /* Color del borde */
-    background-color: transparent; /* Fondo transparente */
+    width: 4rem;
+    height: 4rem;
+    border-width: 0.4em;
 }
 
-/* Botón de advertencia (anteriormente btn-outline-warning) */
-.btn-outline-warning {
-    color: #000000; /* Color del texto */
-    border-color: transparent; /* Color del borde */
-    background-color: transparent; /* Fondo transparente */
+/* Botones de alerta y advertencia modernizados */
+.btn-outline-danger, .btn-outline-warning {
+    color: #333;
+    border-color: #ccc;
+    background-color: transparent;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Cambios en el estado hover */
 .btn-outline-danger:hover, .btn-outline-warning:hover {
-    color: #ffffff; /* Color del texto al pasar el ratón */
-    background-color: #000000; /* Fondo negro al pasar el ratón */
-    border-color: #000000; /* Color del borde al pasar el ratón */
+    color: #ffffff;
+    background-color: #000000;
+    border-color: #000000;
 }
 
-/* Estilos de enfoque */
 .btn-outline-danger:focus, .btn-outline-warning:focus {
-    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5); /* Color del borde de enfoque negro */
-    outline: none; /* Elimina el borde predeterminado */
-    background-color: transparent; /* Mantén el fondo transparente al estar en foco */
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
+    outline: none;
 }
 
-/* Estilos para el estado activo (cuando se hace clic) */
 .btn-outline-danger:active, .btn-outline-warning:active {
-    background-color: transparent; /* Fondo negro al hacer clic */
-    color: #ffffff; /* Color del texto al hacer clic */
-    border-color: #000000; /* Color del borde al hacer clic */
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
 }
 
-/* Estilo para alinear los botones horizontalmente */
-.button-group {
-    display: flex;
-    gap: 0.5rem; /* Espacio entre los botones */
-}
-/* Asegúrate de que los botones estén en línea y tengan un espaciado adecuado */
+/* Alineación de botones */
 .btn-group {
     display: flex;
-    gap: 0.5rem; /* Espaciado entre los botones */
+    gap: 0.75rem;
 }
 
 .btn-group .btn {
-    margin: 0; /* Asegúrate de que no haya márgenes adicionales */
+    margin: 0;
 }
 
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #343a40;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}

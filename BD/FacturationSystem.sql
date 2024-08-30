@@ -15,3 +15,12 @@ CREATE TABLE Products(
 	Price decimal(10,2) not null,
 	Amount int not null
 );
+
+CREATE TABLE Clients (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Phone VARCHAR(20) NULL
+);
+
+

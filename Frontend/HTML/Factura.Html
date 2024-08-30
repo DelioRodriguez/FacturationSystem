@@ -29,7 +29,7 @@
                 <form id="facturaForm" class="form-group bg-white p-4 rounded shadow-sm">
                     <div class="form-group">
                         <label for="cliente">Cliente:</label>
-                        <input type="text" class="form-control" id="cliente" name="cliente" required>
+                        <select id="cliente" name="cliente" class="form-control" required></select>
                     </div>
                     <div class="form-group">
                         <label for="productosSeleccionados">Productos Seleccionados:</label>
@@ -39,15 +39,32 @@
                         <label for="total">Total:</label>
                         <p id="total"></p>
                     </div>
+                    <div class="form-group">
+                        <label for="subtotal">Subtotal:</label>
+                        <p id="subtotal">$0.00</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="itbis">ITBIS (18%):</label>
+                        <p id="itbis">$0.00</p>
+                    </div>
+                   
+                    
                     <button type="submit" class="btn btn-primary">Generar Factura</button>
                 </form>
             </div>
         </div>
     </main>
 
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    
+    <!-- jQuery y Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Tu script para generar la factura -->
     <script src="/Frontend/JS/factura.js"></script>
 </body>
 </html>
