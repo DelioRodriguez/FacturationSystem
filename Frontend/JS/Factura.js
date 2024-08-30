@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach(product => {
                 const li = document.createElement('li');
                 li.className = 'list-group-item';
-                li.textContent = `${product.name} - $${formatNumber(product.price.toFixed(2))}`;
+                li.textContent = `${product.name} - $${formatNumber(product.price.toFixed(2))} - Cantidad: ${product.amount}`;
                 li.setAttribute('data-id', product.id);
                 li.setAttribute('data-price', product.price);
                 productosList.appendChild(li);
