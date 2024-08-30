@@ -9,7 +9,7 @@ El **Proyecto de Facturación Básico** es una aplicación web desarrollada para
 - **Backend**: .NET 8
 - **Frontend**: HTML, CSS, JavaScript, Bootstrap
 - **API**: Endpoints RESTful en .NET 8
-- **Generación de PDF**: Biblioteca para crear facturas en formato PDF
+- **Generación de PDF**: JsPDF
 
 ## Funcionalidades
 
