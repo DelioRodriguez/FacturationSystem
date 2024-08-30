@@ -27,15 +27,9 @@ El **Proyecto de Facturación Básico** es una aplicación web desarrollada para
   - Generación de facturas en formato PDF.
   - Actualización de stock después de una venta.
 
-## Uso
 
-1. **Accede al Frontend**:
-   - Abre el archivo `index.html` en un navegador web para interactuar con la aplicación.
 
-2. **Interacción con el Backend**:
-   - Los endpoints disponibles para el backend están documentados en la carpeta `docs/api` del proyecto.
-
-## Contacto
+## Creador
 
 Desarrollador: Delio Rodriguez  
 
