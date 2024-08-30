@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const productosTable = document.getElementById('productosTable');
     let productoIdToDelete = null;
 
-    // Función para cargar productos
+    
     function loadProductos() {
         fetch('http://localhost:5013/api/Products')
             .then(response => response.json())
             .then(productos => {
-                productosTable.innerHTML = ''; // Limpiar tabla antes de actualizar
+                productosTable.innerHTML = ''; 
                 productos.forEach(producto => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error al cargar los productos:', error));
     }
 
-    // Manejar el envío del formulario
     productoForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -44,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Solo incluimos el id si estamos actualizando un producto
+        
         const productoData = {
             id: productoId || 0,
             name: name,
@@ -66,19 +65,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!response.ok) {
                 return response.text().then(text => { throw new Error(text); });
             }
-            return response.text(); // Usa text() en lugar de json() si la respuesta puede estar vacía
+            return response.text(); 
         })
         .then(() => {
-            productoForm.reset(); // Limpia el formulario después de enviar
-            document.getElementById('productoId').value = ''; // Limpia el ID
-            loadProductos(); // Asegúrate de que se llama después de la actualización
+            productoForm.reset();
+            document.getElementById('productoId').value = ''; 
+            loadProductos(); 
         })
         .catch(error => {
             console.error('Error al enviar la solicitud:', error);
         });
     });
 
-    // Función para editar un producto
+  
     window.editProducto = function(id) {
         fetch(`http://localhost:5013/api/Products/${id}`)
             .then(response => response.json())
@@ -91,13 +90,13 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error al cargar el producto para editar:', error));
     };
 
-    // Función para mostrar el modal de confirmación de eliminación
+    
     window.showDeleteModal = function(id) {
         productoIdToDelete = id;
         $('#confirmDeleteModal').modal('show');
     };
 
-    // Función para eliminar un producto
+ 
     document.getElementById('confirmDeleteButton').addEventListener('click', function() {
         fetch(`http://localhost:5013/api/Products/${productoIdToDelete}`, {
             method: 'DELETE'
@@ -107,10 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.text().then(text => { throw new Error(text); });
             }
             $('#confirmDeleteModal').modal('hide');
-            loadProductos(); // Recargar la tabla después de eliminar un producto
+            loadProductos(); 
         })
         .catch(error => console.error('Error al eliminar el producto:', error));
     });
 
-    loadProductos(); // Cargar los productos al inicio
 });

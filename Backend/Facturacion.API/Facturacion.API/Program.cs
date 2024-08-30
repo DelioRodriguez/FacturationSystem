@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5013); // Configura el puerto aquí
+});
 // Add services to the container.
 builder.Services.AddDbContext<FacturacionContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("To-do")));

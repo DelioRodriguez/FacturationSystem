@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Toggle password visibility
+
     const togglePasswordButton = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('password');
 
@@ -7,13 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const type = passwordInput.type === 'password' ? 'text' : 'password';
         passwordInput.type = type;
 
-        // Toggle icon
-        const icon = togglePasswordButton.querySelector('i');
+       const icon = togglePasswordButton.querySelector('i');
         icon.classList.toggle('fa-eye');
         icon.classList.toggle('fa-eye-slash');
     });
 
-    // Form submission handler
+
     document.getElementById('loginForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             password: password
         };
 
-        // Limpiar cualquier mensaje de error previo
+        
         clearErrorMessage();
 
         fetch('http://localhost:5013/api/Auth/login', {
@@ -42,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            console.log('Datos recibidos:', data); // Para depuración
+            console.log('Datos recibidos:', data); 
 
             if (data && data.role) {
                 const userRole = data.role;
@@ -80,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Remove error message when focusing on any input
+
     document.getElementById('username').addEventListener('focus', clearErrorMessage);
     document.getElementById('password').addEventListener('focus', clearErrorMessage);
 });

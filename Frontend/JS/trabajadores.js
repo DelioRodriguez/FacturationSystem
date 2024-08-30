@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const trabajadoresTable = document.getElementById('trabajadoresTable');
     let deleteUserId = null;
 
-    // Función para cargar trabajadores
+    
     function loadTrabajadores() {
         fetch('http://localhost:5013/api/Users')
             .then(response => response.json())
             .then(users => {
-                trabajadoresTable.innerHTML = ''; // Limpiar tabla antes de actualizar
+                trabajadoresTable.innerHTML = ''; 
                 users.forEach(user => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error al cargar los trabajadores:', error));
     }
 
-    // Manejar el envío del formulario
+    
     trabajadorForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Función para editar un usuario
+
     window.editUser = function(id) {
         fetch(`http://localhost:5013/api/Users/${id}`)
             .then(response => response.json())

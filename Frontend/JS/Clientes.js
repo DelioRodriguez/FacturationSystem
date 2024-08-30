@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmDeleteButton = document.getElementById('confirmDeleteButton');
     let clienteIdToDelete = null;
 
-    // Función para cargar clientes
+   
     function loadClientes() {
         fetch('http://localhost:5013/api/Clients')
             .then(response => response.json())
             .then(data => {
-                console.log('Clientes recibidos:', data); // Verifica los datos
-                clientesTable.innerHTML = ''; // Limpiar tabla
+                console.log('Clientes recibidos:', data); 
+                clientesTable.innerHTML = '';
                 if (data.length === 0) {
                     clientesTable.innerHTML = '<tr><td colspan="4" class="text-center">No hay clientes disponibles</td></tr>';
                 } else {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error loading clients:', error));
     }
 
-    // Manejar el envío del formulario
+   
     clienteForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const clienteId = document.getElementById('clienteId').value.trim();
@@ -55,18 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => {
             if (response.status === 204) {
-                // Respuesta sin contenido, la solicitud fue exitosa
                 return;
             }
             if (!response.ok) {
                 return response.text().then(text => { throw new Error(text); });
             }
-            return response.json(); // Manejar la respuesta JSON si no es vacía
+            return response.json();
         })
         .then(() => {
-            clienteForm.reset(); // Limpiar formulario después de enviar
-            document.getElementById('clienteId').value = ''; // Limpiar campo oculto
-            loadClientes(); // Actualizar tabla después de guardar los cambios
+            clienteForm.reset(); 
+            document.getElementById('clienteId').value = ''; 
+            loadClientes(); 
         })
         .catch(error => console.error('Error saving client:', error));
     });
@@ -76,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`http://localhost:5013/api/Clients/${id}`)
             .then(response => response.json())
             .then(cliente => {
-                console.log('Cliente recibido para edición:', cliente); // Verifica los datos
+                console.log('Cliente recibido para edición:', cliente); 
                 document.getElementById('nombre').value = cliente.name || '';
                 document.getElementById('email').value = cliente.email || '';
                 document.getElementById('telefono').value = cliente.phone || '';
@@ -85,20 +84,18 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error fetching client:', error));
     };
 
-    // Confirmar eliminación de un cliente
+
     window.confirmDelete = function(id) {
         clienteIdToDelete = id;
         $('#confirmDeleteModal').modal('show');
     };
 
-    // Eliminar un cliente
     confirmDeleteButton.addEventListener('click', () => {
         fetch(`http://localhost:5013/api/Clients/${clienteIdToDelete}`, {
             method: 'DELETE'
         })
         .then(response => {
             if (response.status === 204) {
-                // Respuesta sin contenido, la eliminación fue exitosa
                 return;
             }
             if (!response.ok) {
@@ -107,11 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(() => {
             $('#confirmDeleteModal').modal('hide');
-            loadClientes(); // Actualizar tabla después de eliminar el cliente
+            loadClientes(); 
         })
         .catch(error => console.error('Error deleting client:', error));
     });
 
-    // Cargar clientes al iniciar
     loadClientes();
 });

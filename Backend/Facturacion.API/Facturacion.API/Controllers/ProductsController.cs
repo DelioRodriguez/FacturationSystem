@@ -1,5 +1,6 @@
 ﻿using Facturacion.API.Data.Context;
 using Facturacion.API.Data.Entities;
+using Facturacion.API.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -55,9 +56,9 @@ namespace Facturacion.API.Controllers
 
         // PUT: api/Products/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProducts(int id, [FromBody] Products product)
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductUpdateModel updateModel)
         {
-            if (id != product.Id)
+            if (id != updateModel.Id)
             {
                 return BadRequest();
             }
@@ -68,10 +69,10 @@ namespace Facturacion.API.Controllers
                 return NotFound();
             }
 
-            existingProduct.Name = product.Name;
-            existingProduct.Price = product.Price;
-            existingProduct.Amount = product.Amount;
-            // Agrega aquí cualquier otra propiedad que desees actualizar
+            // Actualizar propiedades del producto
+            existingProduct.Name = updateModel.Name ?? existingProduct.Name;
+            existingProduct.Price = updateModel.Price ?? existingProduct.Price;
+            existingProduct.Amount = updateModel.Amount ?? existingProduct.Amount;
 
             _context.Entry(existingProduct).State = EntityState.Modified;
 
@@ -93,6 +94,21 @@ namespace Facturacion.API.Controllers
 
             return NoContent();
         }
+        [HttpPost("{id}/update-stock")]
+        public IActionResult UpdateProductStock(int id, [FromBody] AccAmount request)
+        {
+            var product = _context.Products.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.Amount -= request.CantidadVendida;
+            _context.SaveChanges();
+
+            return Ok(product);
+        }
+
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]

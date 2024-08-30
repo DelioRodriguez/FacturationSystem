@@ -8,27 +8,18 @@
 /* Estilos globales */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #f8f9fa, #e0e7ff);
+    background-color: #f4f7f6;
     color: #333;
-    height: 100vh;
-    display: flex;
-    justify-content: center; /* Centra el formulario en la página */
-    align-items: center;
 }
 
-/* Header estilizado */
 header {
-    background: linear-gradient(135deg, #007bff, #0056b3);
+    background-color: #343a40;
     color: #fff;
-    padding: 15px 20px;
+    padding: 10px 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
 }
 
 header h1 {
-    font-size: 2rem;
-    font-weight: bold;
     margin-bottom: 10px;
 }
 
@@ -47,43 +38,31 @@ main {
     padding: 20px;
     max-width: 1200px;
     margin: auto;
-    flex-grow: 1;
 }
 
-/* Secciones con sombra y bordes redondeados */
 .form-section, .table-section {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
-    width: 100%;
-    max-width: 400px; /* Define un ancho máximo para el formulario */
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-/* Ajustes para el formulario de inicio de sesión */
 .form-group {
-    margin-bottom: 15px; /* Reduce el margen para evitar el movimiento del botón */
+    margin-bottom: 15px;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-weight: bold;
-    font-size: 1rem;
-    color: #555;
 }
 
 input, button {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 50px;
-    font-size: 1rem;
-}
-
-input {
-    margin-bottom: 10px; /* Añadido para separar los campos */
+    border-radius: 4px;
 }
 
 button {
@@ -91,69 +70,87 @@ button {
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: bold;
-    transition: none; /* Elimina la transición */
-    margin-top: 10px; /* Añadido para evitar que el botón suba */
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-/* Estilos personalizados para el mensaje de error */
-#error-message {
-    font-size: 0.9rem;
-    color: #e74c3c;
-    margin-top: 10px; /* Añadido para espaciar el mensaje del botón */
-    word-wrap: break-word; /* Asegura que el mensaje se ajuste al área disponible */
-    text-align: center; /* Centra el mensaje de error */
-    line-height: 1.5; /* Ajusta el espaciado dentro del mensaje de error */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-/* Estilos de tarjeta modernizados */
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: #fff;
+}
+body {
+    background-color: #f8f9fa;
+}
+
 .card {
     background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    padding: 30px;
 }
 
 .form-control {
-    border-radius: 50px;
-    padding: 15px;
-    font-size: 1rem;
+    border-radius: 0.25rem;
 }
 
-/* Botones de edición y eliminación más llamativos */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+#error-message {
+    font-size: 0.9rem;
+}
+
+
+
 button.edit, button.delete {
-    background-color: #ffffff;
-    color: #007bff;
-    border: 2px solid #007bff;
-    padding: 8px 15px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    padding: 5px 10px;
     cursor: pointer;
-    border-radius: 50px;
+    border-radius: 4px;
     margin-right: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
 }
 
 button.delete {
-    background-color: #e74c3c;
-    color: #ffffff;
-    border: none;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #fff;
 }
 
 button.edit:hover {
-    background-color: #007bff;
-    color: #ffffff;
+    background-color: #f0f0f0;
 }
 
 button.delete:hover {
-    background-color: #c0392b;
+    background-color: #333;
 }
 
-/* Estilos para el overlay y spinner */
+
 .overlay {
     position: fixed;
     top: 0;
@@ -165,65 +162,62 @@ button.delete:hover {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    visibility: hidden; /* Oculto por defecto */
+    visibility: hidden; 
 }
-
 .spinner-border {
-    width: 4rem;
-    height: 4rem;
-    border-width: 0.4em;
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
 }
 
-/* Botones de alerta y advertencia modernizados */
-.btn-outline-danger, .btn-outline-warning {
-    color: #333;
-    border-color: #ccc;
-    background-color: transparent;
-    border-radius: 50px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
+
+
+.btn-outline-danger {
+    color: #000000; 
+    border-color: transparent; 
+    background-color: transparent; 
 }
+
+
+.btn-outline-warning {
+    color: #000000;
+    border-color: transparent; 
+    background-color: transparent; 
+}
+
 
 .btn-outline-danger:hover, .btn-outline-warning:hover {
-    color: #ffffff;
-    background-color: #000000;
-    border-color: #000000;
+    color: #ffffff; 
+    background-color: #000000; 
+    border-color: #000000; 
 }
+
 
 .btn-outline-danger:focus, .btn-outline-warning:focus {
-    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5); 
     outline: none;
+    background-color: transparent;
 }
 
+
 .btn-outline-danger:active, .btn-outline-warning:active {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: transparent; 
+    color: #ffffff; 
     border-color: #000000;
 }
 
-/* Alineación de botones */
+
+.button-group {
+    display: flex;
+    gap: 0.5rem; 
+}
+
 .btn-group {
     display: flex;
-    gap: 0.75rem;
+    gap: 0.5rem; 
 }
 
 .btn-group .btn {
-    margin: 0;
+    margin: 0; 
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 15px 0;
-    background-color: #343a40;
-    color: #fff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-footer p {
-    margin: 0;
-    font-size: 0.9rem;
-}
