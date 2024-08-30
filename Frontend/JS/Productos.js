@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const productosTable = document.getElementById('productosTable');
     let productoIdToDelete = null;
 
-    
     function loadProductos() {
         fetch('http://localhost:5013/api/Products')
             .then(response => response.json())
@@ -43,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        
         const productoData = {
             id: productoId || 0,
             name: name,
@@ -77,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-  
     window.editProducto = function(id) {
         fetch(`http://localhost:5013/api/Products/${id}`)
             .then(response => response.json())
@@ -90,13 +87,11 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error al cargar el producto para editar:', error));
     };
 
-    
     window.showDeleteModal = function(id) {
         productoIdToDelete = id;
         $('#confirmDeleteModal').modal('show');
     };
 
- 
     document.getElementById('confirmDeleteButton').addEventListener('click', function() {
         fetch(`http://localhost:5013/api/Products/${productoIdToDelete}`, {
             method: 'DELETE'
@@ -111,4 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error al eliminar el producto:', error));
     });
 
+ 
+    loadProductos();
 });
